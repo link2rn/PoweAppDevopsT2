@@ -93,5 +93,5 @@ jobs:
       with:
         solution-folder: ${{ inputs.SOLUTION_OUTBOUND_FOLDER }}${{ inputs.SOLUTION_NAME }}
         solution-target-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER }}${{ inputs.SOLUTION_NAME }}
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.PAT_KEY }}
         allow-empty-commit: true
