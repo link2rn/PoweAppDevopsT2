@@ -21,5 +21,5 @@ jobs:
       AAD_TENANT_ID: '6e020d3d-771e-43d2-bf2d-b3bc7b09f80e'
       
       # Update here with your actual build and production environment URLs
-      BUILD_ENVIRONMENT_URL: 'https://org09c0cb2d.crm.dynamics.com/'
+      BUILD_ENVIRONMENT_URL: 'https://orgdce44bee.crm.dynamics.com/'
       PRODUCTION_ENVIRONMENT_URL: 'https://org3244b1fb.crm.dynamics.com/'
