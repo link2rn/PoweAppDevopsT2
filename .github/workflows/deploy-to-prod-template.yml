@@ -61,9 +61,9 @@ jobs:
       with:
         lfs: true
 
-    - name: Install Power Platform Tools
-      uses: microsoft/powerplatform-actions/actions-install@v1
-      
+    # - name: Install Power Platform Tools
+    #   uses: microsoft/powerplatform-actions/actions-install@v1
+
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
