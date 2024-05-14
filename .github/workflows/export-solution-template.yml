@@ -52,6 +52,8 @@ jobs:
       AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
       TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
       CLOUD: ${{ inputs.CLOUD_TYPE }}  # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v2
