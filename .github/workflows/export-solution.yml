@@ -24,9 +24,9 @@ jobs:
     uses: ./.github/workflows/export-solution-template.yml
     with:
       # You can specify the solution name here
-      SOLUTION_NAME: ${{ inputs.PAPP_SOLUTION_NAME }}
+      SOLUTION_NAME: 'DevOpsTest' #${{ inputs.PAPP_SOLUTION_NAME }}
       # Update your actual cloud instance here (Public, UsGov, UsGovHigh, UsGovDoD)
-      CLOUD_TYPE: ${{ inputs.PAPP_CLOUD_TYPE }}
+      CLOUD_TYPE: 'Public' #${{ inputs.PAPP_CLOUD_TYPE }}
     secrets:
       DEV_ENVIRONMENT_URL: 'https://orgff79671b.crm.dynamics.com/'
       AAD_APP_SECRET: ${{ secrets.APP_SECRET }}
