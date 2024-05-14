@@ -1,0 +1,15 @@
+name: Export HelloWorldCanvasApp Solution
+# Call the reusable workflow release-solution-with-inputs.yml
+# Release your solution to prod when you create a new release.
+
+on: 
+   workflow_dispatch:      
+
+jobs:
+  Export--Solution:
+    uses: ./.github/workflows/export-solution-template.yml
+    with:
+      # You can specify the solution name here
+      SOLUTION_NAME: HelloWorldCanvasApp
+      # Update your actual cloud instance here (Public, UsGov, UsGovHigh, UsGovDoD)
+      CLOUD_TYPE: 'Public'
