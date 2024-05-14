@@ -8,7 +8,7 @@ on:
         PAPP_SOLUTION_NAME:
           description: 'Solution name:'
           type: string
-          default: ALMLab     
+          default: DevOpsTest     
         PAPP_CLOUD_TYPE: 
           description: 'The cloud type (Public, UsGov, UsGovHigh, UsGovDoD)'
           type: string

@@ -11,7 +11,7 @@ on:
       SOLUTION_NAME:
         description: 'The solution name.'
         type: string
-        default: ALMLab     
+        required: true    
       SOLUTION_OUTBOUND_FOLDER:
         description: 'staging the unpacked solution folder before check-in *do not change*'
         type: string
@@ -51,7 +51,7 @@ jobs:
       CLIENT_ID: ${{ secrets.AAD_CLIENT_ID }}
       AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
       TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
-      CLOUD: 'UsGov' # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
+      CLOUD: ${{ inputs.CLOUD_TYPE }}  # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
 
     steps:
     - uses: actions/checkout@v2
