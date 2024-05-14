@@ -9,7 +9,7 @@ on:
       #Values are set by the caller
       #caller sample: release-action-call.ymnl
       SOLUTION_NAME:
-        description: 'Solution name:'
+        description: 'The solution name.'
         type: string
         default: ALMLab     
       SOLUTION_OUTBOUND_FOLDER:
@@ -38,21 +38,20 @@ on:
       AAD_TENANT_ID:
         description: 'The tenant ID of the AAD application for authentication'
         required: true
-      # DEV_ENVIRONMENT_URL:
-      #   description: 'Development environment url.'
-      #   default: ''
-      #   required: true    
+      DEV_ENVIRONMENT_URL:
+        description: 'Development environment url.'
+        required: true    
 
 jobs:
   export-from-dev:
     runs-on: windows-latest
     env:
       RUNNER_DEBUG: 1
-      DEV_ENVIRONMENT_URL: 'https://orgff79671b.crm.dynamics.com/' #${{ inputs.DEV_ENVIRONMENT_URL }}
-      APP_ID: '3abca77b-1500-426c-911e-2ef9ff115a23' #${{ env.APP_ID }}
-      APP_SECRET: ${{ secrets.APP_SECRET }}
-      TENANT_ID: '6e020d3d-771e-43d2-bf2d-b3bc7b09f80e' #${{ env.TENANT_ID }}
-      CLOUD: 'public' #'UsGov' # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
+      ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
+      CLIENT_ID: ${{ secrets.AAD_CLIENT_ID }}
+      AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
+      TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
+      CLOUD: 'UsGov' # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
 
     steps:
     - uses: actions/checkout@v2
@@ -62,19 +61,19 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{ env.DEV_ENVIRONMENT_URL }}
-        app-id: ${{ env.APP_ID }}
-        client-secret: ${{ secrets.APP_SECRET }}
-        tenant-id: ${{ env.TENANT_ID }}
+        environment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
+        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        tenant-id: ${{ secrets.AAD_TENANT_ID }}
         cloud: ${{ inputs.CLOUD_TYPE }}
 
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{ env.DEV_ENVIRONMENT_URL }}
-        app-id: ${{ env.APP_ID }}
-        client-secret: ${{ secrets.APP_SECRET }}
-        tenant-id: ${{ env.TENANT_ID }}
+        environment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
+        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        tenant-id: ${{ secrets.AAD_TENANT_ID }}
         cloud: ${{ inputs.CLOUD_TYPE }}
         solution-name: ${{ inputs.SOLUTION_NAME }}
         solution-output-file: ${{ inputs.SOLUTION_EXPORTS_FOLDER }}${{ inputs.SOLUTION_NAME }}.zip

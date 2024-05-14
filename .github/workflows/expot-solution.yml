@@ -1,15 +1,31 @@
-name: Export HelloWorldCanvasApp Solution
+name: Export App Solution
 # Call the reusable workflow release-solution-with-inputs.yml
 # Release your solution to prod when you create a new release.
 
-on: 
-   workflow_dispatch:      
+on:
+    workflow_dispatch:
+      inputs: 
+        PAPP_SOLUTION_NAME:
+          description: 'Solution name:'
+          type: string
+          default: ALMLab     
+        PAPP_CLOUD_TYPE: 
+          description: 'The cloud type (Public, UsGov, UsGovHigh, UsGovDoD)'
+          type: string
+          required: true
+          default: 'Public'
+        
 
 jobs:
-  Export--Solution:
+  Export-DevOps-Solution:
     uses: ./.github/workflows/export-solution-template.yml
     with:
       # You can specify the solution name here
-      SOLUTION_NAME: HelloWorldCanvasApp
+      SOLUTION_NAME: ${{ inputs.PAPP_SOLUTION_NAME }}
       # Update your actual cloud instance here (Public, UsGov, UsGovHigh, UsGovDoD)
-      CLOUD_TYPE: 'Public'
+      CLOUD_TYPE: ${{ inputs.PAPP_CLOUD_TYPE }}
+    secrets:
+      DEV_ENVIRONMENT_URL: 'https://orgff79671b.crm.dynamics.com/'
+      AAD_APP_SECRET: ${{ secrets.APP_SECRET }}
+      AAD_CLIENT_ID: '3abca77b-1500-426c-911e-2ef9ff115a23'
+      AAD_TENANT_ID: '6e020d3d-771e-43d2-bf2d-b3bc7b09f80e'
