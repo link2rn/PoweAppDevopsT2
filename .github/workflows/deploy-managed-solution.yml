@@ -1,0 +1,25 @@
+name: Release HelloWorldCanvasApp Solution
+# Call the reusable workflow release-solution-with-inputs.yml
+# Release your solution to prod when you create a new release.
+
+on:
+  release:
+      types: [created]        
+
+jobs:
+  Release-Solution-to-Prod:
+    uses: ./.github/workflows/deploy-to-prod-template.yml
+    with:
+      # The name of the solution file to publish to production
+      SOLUTION_NAME: DevOpsTest
+      
+      # Public, UsGov, UsGovHigh, UsGovDod
+      CLOUD_TYPE: 'Public' 
+    secrets:
+      AAD_APP_SECRET: ${{ secrets.APP_SECRET }}
+      AAD_CLIENT_ID: '3abca77b-1500-426c-911e-2ef9ff115a23'
+      AAD_TENANT_ID: '6e020d3d-771e-43d2-bf2d-b3bc7b09f80e'
+      
+      # Update here with your actual build and production environment URLs
+      BUILD_ENVIRONMENT_URL: 'https://orgff79671b.crm.dynamics.com/'
+      PRODUCTION_ENVIRONMENT_URL: 'https://org3244b1fb.crm.dynamics.com/'
