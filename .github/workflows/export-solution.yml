@@ -3,17 +3,20 @@ name: Export App Solution
 # Release your solution to prod when you create a new release.
 
 on:
-    workflow_dispatch:
-      inputs: 
-        PAPP_SOLUTION_NAME:
-          description: 'Solution name:'
-          type: string
-          default: DevOpsTest     
-        PAPP_CLOUD_TYPE: 
-          description: 'The cloud type (Public, UsGov, UsGovHigh, UsGovDoD)'
-          type: string
-          required: true
-          default: 'Public'
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs: 
+      PAPP_SOLUTION_NAME:
+        description: 'Solution name:'
+        type: string
+        default: DevOpsTest     
+      PAPP_CLOUD_TYPE: 
+        description: 'The cloud type (Public, UsGov, UsGovHigh, UsGovDoD)'
+        type: string
+        required: true
+        default: 'Public'
         
 
 jobs:
