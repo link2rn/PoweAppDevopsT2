@@ -42,19 +42,19 @@ on:
         description: 'Development environment url.'
         required: true    
 
+env:
+  ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
+  CLIENT_ID: ${{ secrets.AAD_CLIENT_ID }}
+  AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
+  TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
+  CLOUD: ${{ inputs.CLOUD_TYPE }}  # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
+permissions:
+  contents: write
 jobs:
   export-from-dev:
     runs-on: windows-latest
     env:
       RUNNER_DEBUG: 1
-      ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
-      CLIENT_ID: ${{ secrets.AAD_CLIENT_ID }}
-      AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
-      TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
-      CLOUD: ${{ inputs.CLOUD_TYPE }}  # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
-    permissions:
-      contents: write
-
     steps:
     - uses: actions/checkout@v2
       with:
