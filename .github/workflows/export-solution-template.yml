@@ -59,6 +59,9 @@ jobs:
       with:
         lfs: true
 
+    - name: Install Power Platform Tools
+      uses: microsoft/powerplatform-actions/actions-install@v1
+
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
@@ -92,5 +95,5 @@ jobs:
       with:
         solution-folder: ${{ inputs.SOLUTION_OUTBOUND_FOLDER }}${{ inputs.SOLUTION_NAME }}
         solution-target-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER }}${{ inputs.SOLUTION_NAME }}
-        repo-token: ${{ secrets.PAT_KEY }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
