@@ -48,8 +48,7 @@ env:
   AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
   TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
   CLOUD: ${{ inputs.CLOUD_TYPE }}  # UsGov => GCC, UsGovHigh => GCCH, UsGovDod => DOD
-permissions:
-  contents: write
+
 jobs:
   export-from-dev:
     runs-on: windows-latest
@@ -89,7 +88,7 @@ jobs:
         overwrite-files: true
 
     - name: branch-solution, prepare it for a PullRequest
-      uses: microsoft/powerplatform-actions/branch-solution@v0
+      uses: microsoft/powerplatform-actions/branch-solution@v1
       with:
         solution-folder: ${{ inputs.SOLUTION_OUTBOUND_FOLDER }}${{ inputs.SOLUTION_NAME }}
         solution-target-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER }}${{ inputs.SOLUTION_NAME }}
