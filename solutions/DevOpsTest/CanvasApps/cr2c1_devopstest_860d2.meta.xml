@@ -29,6 +29,6 @@
   <BackgroundImageUri>/CanvasApps/cr2c1_devopstest_860d2_BackgroundImageUri</BackgroundImageUri>
   <DocumentUri>/CanvasApps/cr2c1_devopstest_860d2_DocumentUri.msapp</DocumentUri>
   <AdditionalUris>
-    <AdditionalUri>cr2c1_devopstest_860d2_AdditionalUris0_identity.json</AdditionalUri>
+    <AdditionalUri>/CanvasApps/cr2c1_devopstest_860d2_AdditionalUris0_identity.json</AdditionalUri>
   </AdditionalUris>
 </CanvasApp>
