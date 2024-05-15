@@ -1,0 +1,96 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "devops_sharedoffice365_3178c"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "140f0f75-c5bf-4d4f-8ff1-f968460c98b4"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "fullAddress": {
+                      "title": "Full address",
+                      "type": "string",
+                      "x-ms-dynamically-added": false
+                    }
+                  },
+                  "required": [
+                    "fullAddress"
+                  ]
+                }
+              },
+              "required": [
+                "location"
+              ]
+            },
+            "headersSchema": {
+              "x-ms-user-timestamp": {
+                "title": "Timestamp",
+                "type": "string",
+                "x-ms-dynamically-added": false
+              }
+            }
+          }
+        }
+      },
+      "actions": {
+        "Send_an_email_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "632ac3d7-0e0b-40af-be9b-93fcb2a38380"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "link2rn@gmail.com",
+              "emailMessage/Subject": "Solution Test",
+              "emailMessage/Body": "<p>This is test email<br>\nfrom @{triggerBody()['location']['fullAddress']}<br>\nAt: @{triggerOutputs()['headers']['x-ms-user-timestamp']}<br>\n</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
