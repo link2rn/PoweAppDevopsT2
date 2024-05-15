@@ -21,6 +21,7 @@ on:
 
 jobs:
   Export-DevOps-Solution:
+    if: github.event_name == 'push' && github.event.pull_request == null
     uses: ./.github/workflows/export-solution-template.yml
     with:
       # You can specify the solution name here
