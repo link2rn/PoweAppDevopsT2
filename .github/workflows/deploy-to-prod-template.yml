@@ -49,6 +49,9 @@ on:
         description: 'Production environment url.'
         required: true  
 
+permissions:
+  contents: write
+
 jobs:
   convert-to-managed:
     runs-on: windows-latest
@@ -65,14 +68,14 @@ jobs:
     #   uses: microsoft/powerplatform-actions/actions-install@v1
 
     - name: Pack solution
-      uses: microsoft/powerplatform-actions/pack-solution@v0.1.7
+      uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
         solution-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER}}/${{ inputs.SOLUTION_NAME }}
         solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
         solution-type: Unmanaged
 
     - name: Import solution as unmanaged to build env
-      uses: microsoft/powerplatform-actions/import-solution@v0.1.7
+      uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
@@ -84,7 +87,7 @@ jobs:
         publish-changes: true
 
     - name: Export solution as managed
-      uses: microsoft/powerplatform-actions/export-solution@v0.1.7
+      uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
