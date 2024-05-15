@@ -65,8 +65,7 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v1
       with:
-        # environment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
-        environment-ID: '23251a0e-9379-eca5-9d42-222e2c22d811'
+        environment-id: '23251a0e-9379-eca5-9d42-222e2c22d811'
         app-id: ${{ secrets.AAD_CLIENT_ID }}
         client-secret: ${{ secrets.AAD_APP_SECRET }}
         tenant-id: ${{ secrets.AAD_TENANT_ID }}
