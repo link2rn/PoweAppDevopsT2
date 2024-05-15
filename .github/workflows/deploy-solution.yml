@@ -22,4 +22,4 @@ jobs:
       
       # Update here with your actual build and production environment URLs
       BUILD_ENVIRONMENT_URL: 'https://org3244b1fb.crm.dynamics.com/'
-      PRODUCTION_ENVIRONMENT_URL: 'https://org3244b1fb.crm.dynamics.com/'
+      PRODUCTION_ENVIRONMENT_URL: 'https://org31be4c91.crm.dynamics.com/'
