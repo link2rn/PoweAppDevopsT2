@@ -3,9 +3,6 @@ name: Export App Solution
 # Release your solution to prod when you create a new release.
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs: 
       PAPP_SOLUTION_NAME:
@@ -21,7 +18,6 @@ on:
 
 jobs:
   Export-DevOps-Solution:
-    if: github.event_name == 'push' && github.event.pull_request == null
     uses: ./.github/workflows/export-solution-template.yml
     with:
       # You can specify the solution name here
