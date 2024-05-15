@@ -28,7 +28,4 @@
   <IsCustomizable>1</IsCustomizable>
   <BackgroundImageUri>/CanvasApps/devops_deasktopdesign_2f13f_BackgroundImageUri</BackgroundImageUri>
   <DocumentUri>/CanvasApps/devops_deasktopdesign_2f13f_DocumentUri.msapp</DocumentUri>
-  <AdditionalUris>
-    <AdditionalUri>solutions/CanvasApps/devops_deasktopdesign_2f13f_AdditionalUris0_identity.json</AdditionalUri>
-  </AdditionalUris>
 </CanvasApp>

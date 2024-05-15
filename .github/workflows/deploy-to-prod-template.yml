@@ -66,18 +66,18 @@ jobs:
 
     - name: Install Power Platform Tools
       uses: microsoft/powerplatform-actions/actions-install@v1
-      with:
-        pac-version-override: 1.29.11
+      # with:
+      #   pac-version-override: 1.29.11
 
     - name: Pack solution
-      uses: microsoft/powerplatform-actions/pack-solution@v0
+      uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
         solution-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER}}/${{ inputs.SOLUTION_NAME }}
         solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
         solution-type: Unmanaged
 
     - name: Import solution as unmanaged to build env
-      uses: microsoft/powerplatform-actions/import-solution@v0
+      uses: microsoft/powerplatform-actions/import-solution@v1
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
@@ -89,7 +89,7 @@ jobs:
         publish-changes: true
 
     - name: Export solution as managed
-      uses: microsoft/powerplatform-actions/export-solution@v0
+      uses: microsoft/powerplatform-actions/export-solution@v1
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
